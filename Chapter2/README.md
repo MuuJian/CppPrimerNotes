@@ -16,13 +16,13 @@ int i = 0, &r = i;
 auto a = r; //decltype(a) = int
 ```
 
-`auto`会忽略掉顶层`const`，而底层`const`则会保留下来。（对常量对象取地址是一种底层`const`）
+`auto`会忽略掉顶层`const`，而底层`const`则会保留下来。
 ```C++
 const int ci = i, &cr = ci;
 auto b = ci; //decltype(b) = int
 auto c = cr; //decltype(c) = int
 auto d = &i; //decltype(d) = int*
-auto e = &ci //decltype(e) = const int*
+auto e = &ci //decltype(e) = const int* （对对象取地址是底层const)
 ```
 
 
@@ -64,4 +64,26 @@ auto x6a = { 1, 2 };           // decltype(x6a) is std::initializer_list<int>
 decltype(auto) x6d = { 1, 2 }; // error, { 1, 2 } is not an expression
 auto *x7a = &i;                // decltype(x7a) is int*
 decltype(auto)*x7d = &i;       // error, declared type is not plain decltype(auto)
+```
+```C++
+
+template<class T, class U>
+decltype(*(T*)(0), *(U*)(0)) mul(T x, U y)
+{
+    return x * y;
+}
+
+template<class T, class U>
+auto mul(T x, U y) -> decltype(x * y)
+{
+    return x * y;
+}
+
+C++14:
+template<class T, class U>
+auto mul(T x, U y)
+{
+    return x * y;
+}
+
 ```
