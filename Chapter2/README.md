@@ -24,6 +24,14 @@
     }
 ```
 
+## 2.5.1
+```C++
+typedef char* Pstring
+const Pstring cstr = 0
+const char* cstr = 0
+```
+两者不相等，因为指针的 const 表示比较特殊，const T* 是一个指向 const T 的指针，你可以使其指向另一个 const T；而 T* const 是一个指向 T 的指针，而且你无法改变它指向的对象。然而在非指针情况下 const T 就是一个无法被改变的对象，所以当 T 是一个指针类型时（如S*），那么 const T 会被解释为 T* const，原因是 const 是在修饰 T 本身（整个指针），而不是 S （指针指向的对象）。
+
 ## 2.5.2
 
 当`auto`对引用类型进行推导时，编译器会以引用类型的对象作为auto的类型。
