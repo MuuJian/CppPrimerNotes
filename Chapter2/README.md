@@ -69,8 +69,6 @@ auto d = &i; //decltype(d) = int*
 auto e = &ci //decltype(e) = const int* （对对象取地址是底层const)
 ```
 
-设置一个类型为auto的引用时，初始值中的顶层常量属性依然保留。和往常一样，如果我们给初始值绑定一个引用，则此时的常量就不是顶层常量了。
-When we ask for a reference to an auto-deduced type, top-level consts in the initializer are not ignored. As usual, consts are not top-level when we bind a reference to an initializer
 ```C++
 const auto f = ci;//decltype(f) = const int
 ```
@@ -81,6 +79,9 @@ auto &g = ci; //decltype(g) = const int&
 auto &h = 42; //错误 不能将临时变量绑定到非常量左值引用
 const auto &j = 42;
 ```
+
+设置一个类型为auto的引用时，初始值中的顶层常量属性依然保留。和往常一样，如果我们给初始值绑定一个引用，则此时的常量就不是顶层常量了。
+When we ask for a reference to an auto-deduced type, top-level consts in the initializer are not ignored. As usual, consts are not top-level when we bind a reference to an initializer
 
 top-level const : const 修饰的是自身。
 low-level const : const 修饰的是别人。
