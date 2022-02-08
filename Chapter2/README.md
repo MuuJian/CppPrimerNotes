@@ -26,14 +26,14 @@
 
 ## 2.5.1
 ```C++
-typedef char* Pstring
-const Pstring cstr = 0
-const char* cstr = 0
-```
-说一下里面涉及的概念。
-```C++
 typedef char *pstring;
 const pstring cstr = 0;         //char *const cstr
+const pstring *ps;              //char *const *ps
+```
+[说一下里面涉及的概念。](https://segmentfault.com/q/1010000002568376)
+```C++
+typedef char* pstring;
+const pstring cstr = 0;         //char* const cstr
 cstr is a constant pointer to char. (注意，const 修饰的是 pointer.)
 ```
 const char * vs char * const ?
@@ -77,7 +77,7 @@ const auto f = ci;//decltype(f) = const int
 ```C++
 auto &g = ci; //decltype(g) = const int&
 auto &h = 42; //错误 不能将临时变量绑定到非常量左值引用
-const auto &j = 42;
+const auto &j = 42; //右值
 ```
 
 设置一个类型为auto的引用时，初始值中的顶层常量属性依然保留。和往常一样，如果我们给初始值绑定一个引用，则此时的常量就不是顶层常量了。
