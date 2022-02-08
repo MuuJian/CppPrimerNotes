@@ -85,3 +85,9 @@ int main(void)
     return 0;
 }
 ```
+提示转换时不可达的。这是因为protected继承自Base的派生类Pro_Derv将自身的Base类中的public成员的访问属性设置为了protected。假设这样的编译能过，也就意味着能实现赋值兼容原则–需要基类的地方可以使用派生类代替，自然而然用户可以通过p指针访问派生类中基类的成员pub_mem，即p->pub_mem，但是它的属性现在是protected了，不能被访问。正是这样的悖论，c++编译器直接视为语法错误。换句话说，现在的基类已经不能用派生类来代替。
+
+private继承
+
+private继承，那么派生类中所有public、protected基类成员都是private的，和protected类似，派生类也不能代替基类，所以派生类对象的地址将不会初始化或者赋值给基类的指针。
+
