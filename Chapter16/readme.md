@@ -151,3 +151,12 @@ template<typename T>
 static std::size_t ctr = 0; //定义并初始化ctr
 ```
 
+模版参数实参
+```C++
+template<typename T, typename F = less<T>>
+int compare<T a, T b, f = F()>
+{
+    if(f(a, b)) return -1
+}
+
+```
