@@ -9,7 +9,3 @@
 ## [Chapter13](Chapter13/README.md)
 ## [Chapter15](Chapter15/README.md)
 ## [Chapter16](Chapter16/readme.md)
-
-
-https://github.com/MuuJian/CppPrimerNotes/blob/master/Chapter16/readme.md
-https://github.com/MuuJian/CppPrimerNotes/blob/master/Chapter16/README.md
