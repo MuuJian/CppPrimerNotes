@@ -66,8 +66,18 @@ int main()
 explicit 只能用于直接初始化
 一个const成员函数如果以引用的形式返回*this，那么一定是常量引用
 ```C++
-const Test& test() const
+class Test
 {
-	return *this
-}
+public:
+    int a = 1;
+    Test() {}
+    const Test& operator()() const
+    {
+        return *this;
+    }
+    explicit Test(const Test& test)
+    {
+        this -> a = test.a;
+    }
+};
 ```
