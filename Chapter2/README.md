@@ -200,3 +200,19 @@ auto mul(T x, U y)
 }
 
 ```
+
+decltype并不负责把数组类型转换成指针，所以decltype返回类型是个数组。
+```C++
+
+int odd[] = { 1, 3, 5, 7, 9 };
+int even[] = { 0, 2, 4, 6, 8 };
+decltype(odd)* arrPtr(int i)
+{
+    return (i % 2) ? &odd : &even;
+}
+
+decltype(odd) = int[5]
+decltype(odd)* = int(*)[5]
+
+```
+
