@@ -181,7 +181,7 @@ decltype(auto)*x7d = &i;       // error, declared type is not plain decltype(aut
 ```C++
 
 template<class T, class U>
-decltype(*(T*)(0), *(U*)(0)) mul(T x, U y)
+decltype(*(T*)(0) * *(U*)(0)) mul(T x, U y)
 {
     return x * y;
 }
