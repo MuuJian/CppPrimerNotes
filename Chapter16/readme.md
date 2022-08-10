@@ -34,7 +34,7 @@ void pointer(const char* str)
 }
 
 //引用
-template<const char (&c)[9]>
+template<const char (&c)[5]>
 void reference(const char* str)
 {
     std::cout << c << " " << str << std::endl; 
@@ -45,6 +45,7 @@ void f(const char* c)
     std:: cout << c << std::endl;
 }
 
+//函数指针
 template<void (*f)(const char* c)>
 void fprointer(const char* c)
 {
@@ -53,6 +54,14 @@ void fprointer(const char* c)
 
 char a[] = {"abc"};
 char b[] = {"abcd"};
+
+
+//整形
+template<int T>
+void add(int c)
+{
+    std::cout << c + T << std::endl;
+}
 
 int main()
 {
@@ -65,9 +74,11 @@ int main()
     {
         std::cout << 0 <<std::endl;
     }
+    int d = 5;
     pointer<a>("ponter");
     reference<b>("refe");
     fprointer<f>("abcd");
+    add<5>(5);
 }
 
 ```
@@ -103,6 +114,8 @@ class ListNode
 一对多友好关系，无需前置声明
 ```C++
 
+template<typename T> class List;
+
 template<typename T>
 class ListNode
 {
@@ -121,8 +134,6 @@ class card
 {
     friend T;
 }
-
-Sales_data<card>; // sales_data是Sales_data<card>的友元
 
 ```
 
@@ -148,7 +159,7 @@ private:
 }
 
 template<typename T>
-static std::size_t ctr = 0; //定义并初始化ctr
+size_t Foo<T>::ctr = 0; //定义并初始化ctr
 ```
 
 模版参数实参
@@ -160,3 +171,43 @@ int compare<T a, T b, f = F()>
 }
 
 ```
+
+万能引用推导
+T && 碰到右值 int &&， T匹配成int；
+T && 遇到左值 int，T此时是int &。
+T && 碰到左值 const int，T匹配为 const int &。
+T && 碰到左值 const int *（指针类型), T匹配为const int *& (下略）
+T && 碰到左值 const int * const（指针类型), T匹配为const int *const & （下略）
+
+```C++
+template<typename _Tp>  //std::move
+typename std::remove_reference<_Tp>::type&& move(_Tp&& __t) noexcept
+    { return static_cast<typename remove_reference<_Tp>::type&&>(__t); }
+
+```
+
+```C++ 
+template<typename _Tp>  //std::forward
+constexpr _Tp&& forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+    { return static_cast<_Tp&&>(__t); }
+
+int a;
+test_forward(std::move(a));
+
+constexpr int && forward(int & __t) noexcept
+    { return static_cast<int &&>(__t); }
+
+
+test_forward(a);
+
+constexpr int & forward(int & __t) noexcept
+    { return static_cast<int &>(__t); }
+
+
+```
+
+
+### 參考
+https://zhuanlan.zhihu.com/p/369203981
+
+https://www.zhihu.com/column/c_1306966457508118528
