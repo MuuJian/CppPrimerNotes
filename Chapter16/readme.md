@@ -171,12 +171,16 @@ int compare<T a, T b, f = F()>
 }
 
 ```
-
 万能引用推导
+
 T && 碰到右值 int &&， T匹配成int；
+
 T && 遇到左值 int，T此时是int &。
+
 T && 碰到左值 const int，T匹配为 const int &。
+
 T && 碰到左值 const int *（指针类型), T匹配为const int *& (下略）
+
 T && 碰到左值 const int * const（指针类型), T匹配为const int *const & （下略）
 
 ```C++
