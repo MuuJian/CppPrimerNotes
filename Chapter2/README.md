@@ -216,3 +216,6 @@ decltype(odd)* = int(*)[5]
 
 ```
 
+##參考
+
+[auto類型推導](https://www.zhihu.com/column/c_1306966457508118528)

@@ -11,8 +11,8 @@ bool compare(const T& v1, const T& v2)
     return v1 > v2 ? true : false;
 }
 
-
 ```
+
 
 非类型模版参数
 一个非类型的模版参数可以是一个整数，或者是一个指向对象的指针或引用。绑定到整型参数的实参必须是常量表达式，引用或指针参数必须有静态生存期。指针参数也可以用`0`或`nullptr`。
@@ -55,7 +55,6 @@ void fprointer(const char* c)
 char a[] = {"abc"};
 char b[] = {"abcd"};
 
-
 //整形
 template<int T>
 void add(int c)
@@ -82,6 +81,7 @@ int main()
 }
 
 ```
+
 
 
 类模版的成员函数在用到时才会实例化。在类模版自己的作用域中，我们可以直接使用模版名而不提供实参。
@@ -211,7 +211,11 @@ constexpr int & forward(int & __t) noexcept
 ```
 
 
+
+
 ## 參考
 https://zhuanlan.zhihu.com/p/369203981
 
 https://www.zhihu.com/column/c_1306966457508118528
+
+[template類型推導](https://www.zhihu.com/column/c_1306966457508118528)
